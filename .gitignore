@@ -1,0 +1,83 @@
+## Build Results
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.zip
+*.msi
+*.log
+
+## VS Folders
+.vs/
+.vscode/
+*.user
+*.suo
+
+## Resharper
+_ReSharper*/
+*.DotSettings.user
+
+## ASP.NET Temporary Files
+**/wwwroot/lib/
+**/wwwroot/node_modules/
+**/node_modules/
+npm-debug.log*
+
+## Rider
+.idea/
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+## Logs and Database
+*.log
+*.sql
+*.sqlite
+*.db
+*.db-shm
+*.db-wal
+*.vsidx
+
+## Test Results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+*.testsettings
+
+## Dotnet specific
+*.sln.ide
+*.sln.iml
+*.dotCover
+
+## Publish
+publish/
+dist/
+out/
+
+## Visual Studio Code settings
+.history/
+.DS_Store
+Thumbs.db
+
+## Rider / JetBrains cache
+.idea/
+*.sln.iml
+
+## Others
+*.tmp
+*.bak
+*.orig
+*.swp
