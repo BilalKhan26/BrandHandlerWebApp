@@ -1,0 +1,36 @@
+@using Microsoft.AspNetCore.Identity;
+@using BrandHandlerWebApp.Models;
+@inject SignInManager<Users> signInManager;
+@inject UserManager<Users> userManager;
+
+<ul class="navbar-nav ms-auto align-items-center">
+    @if (signInManager.IsSignedIn(User))
+    {
+        <li class="nav-item me-2">
+            <span class="nav-link text-dark"><strong>Welcome</strong></span>
+        </li>
+        <li class="nav-item">
+            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-link nav-link text-dark p-0">Log Out</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">
+                Login
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">
+                Register
+            </a>
+        </li>
+    }
+
+
+
+
+</ul>

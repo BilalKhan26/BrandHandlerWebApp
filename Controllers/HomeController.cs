@@ -1,8 +1,9 @@
 using System.Diagnostics;
-using BrandHandlerWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using BrandHandlerWebApp.Models;
 
-namespace BrandHandlerWebApp.Controllers
+namespace BrandHandlerWebApp.Controllers    
 {
     public class HomeController : Controller
     {
@@ -18,7 +19,18 @@ namespace BrandHandlerWebApp.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        [Authorize(Roles = "Admin")]
+        public IActionResult Admin()
+        {
+            return View();
+        }
+        [Authorize(Roles = "User")]
+        public IActionResult User()
         {
             return View();
         }
