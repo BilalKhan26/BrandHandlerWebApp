@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrandHandlerWebApp", "BrandHandlerWebApp.csproj", "{AF0BB060-1EC9-4B9D-AFA7-546D1760997E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF0BB060-1EC9-4B9D-AFA7-546D1760997E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF0BB060-1EC9-4B9D-AFA7-546D1760997E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF0BB060-1EC9-4B9D-AFA7-546D1760997E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF0BB060-1EC9-4B9D-AFA7-546D1760997E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C93A967F-261C-4338-B5CD-6CB3DE15DDFC}
+	EndGlobalSection
+EndGlobal
