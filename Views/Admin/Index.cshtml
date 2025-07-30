@@ -1,0 +1,85 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Admin Dashboard</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Meeting Requests</h5>
+                                    <p class="card-text">Review and manage pending meeting requests from brands.</p>
+                                    <a asp-action="ReviewMeetings" class="btn btn-primary">
+                                        <i class="bi bi-calendar-check"></i> Review Meetings
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">User Management</h5>
+                                    <p class="card-text">Manage brand users and their accounts.</p>
+                                    <a href="#" class="btn btn-primary">
+                                        <i class="bi bi-people"></i> Manage Users
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">Quick Stats</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded">
+                                <h3 id="pendingCount">-</h3>
+                                <p class="mb-0">Pending Meetings</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded">
+                                <h3 id="approvedCount">-</h3>
+                                <p class="mb-0">Approved Meetings</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded">
+                                <h3 id="brandCount">-</h3>
+                                <p class="mb-0">Brand Users</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // This would be replaced with actual AJAX calls to get real-time stats
+        document.addEventListener('DOMContentLoaded', function () {
+            // Simulated data - in a real app, this would come from an API
+            document.getElementById('pendingCount').textContent = '5';
+            document.getElementById('approvedCount').textContent = '12';
+            document.getElementById('brandCount').textContent = '8';
+        });
+    </script>
+}

@@ -1,0 +1,208 @@
+@{
+    ViewData["Title"] = "Frequently Asked Questions";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="h3 mb-0">@ViewData["Title"]</h1>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <p class="lead">Find answers to the most common questions about Brand Handler below.</p>
+                    </div>
+
+                    <div class="accordion" id="faqAccordion">
+                        <!-- General Questions -->
+                        <div class="mb-4">
+                            <h2 class="h4">General Questions</h2>
+                            
+                            <div class="accordion-item mt-3">
+                                <h3 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        What is Brand Handler?
+                                    </button>
+                                </h3>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Brand Handler is a web application designed to streamline the meeting scheduling process between brands and administrators. It provides a platform for brands to request meetings and for administrators to review, approve, and manage these requests efficiently.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        How do I create an account?
+                                    </button>
+                                </h3>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        To create an account, click on the "Register" link in the top-right corner of the page. Fill out the registration form with your details, including your email address and a secure password. After submitting the form, you'll receive a confirmation email with instructions to activate your account.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Is Brand Handler free to use?
+                                    </button>
+                                </h3>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Brand Handler offers both free and premium plans. The free plan includes basic features for meeting scheduling and management. Premium plans offer additional features such as advanced analytics, priority support, and integration with other business tools. Visit our pricing page for more details.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- For Brands -->
+                        <div class="mb-4">
+                            <h2 class="h4">For Brands</h2>
+                            
+                            <div class="accordion-item mt-3">
+                                <h3 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        How do I schedule a meeting?
+                                    </button>
+                                </h3>
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        To schedule a meeting, log in to your Brand account and navigate to the "Schedule Meeting" page. Fill out the meeting request form with details such as the title, description, and your preferred date and time. Submit the form to send your request to administrators for review.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        How can I check the status of my meeting request?
+                                    </button>
+                                </h3>
+                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        You can check the status of your meeting requests by going to the "My Meetings" page. This page displays all your meeting requests along with their current status (Pending, Approved, or Rejected). Click on a specific meeting to view more details, including any comments from administrators.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingSix">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                        Can I cancel a meeting request?
+                                    </button>
+                                </h3>
+                                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes, you can cancel a meeting request if it's still in the "Pending" status. To do this, go to the "My Meetings" page, find the meeting you want to cancel, and click the "Cancel" button. Once a meeting has been approved or rejected, you cannot cancel it directly. Instead, you'll need to contact an administrator for assistance.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- For Administrators -->
+                        <div class="mb-4">
+                            <h2 class="h4">For Administrators</h2>
+                            
+                            <div class="accordion-item mt-3">
+                                <h3 class="accordion-header" id="headingSeven">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                        How do I review meeting requests?
+                                    </button>
+                                </h3>
+                                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        As an administrator, you can review meeting requests by navigating to the "Review Meetings" page. This page displays all pending meeting requests. Click on a specific request to view its details and take action (approve or reject). When approving a meeting, you'll need to confirm the date and time and provide a meeting link.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingEight">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                        Can I reschedule an approved meeting?
+                                    </button>
+                                </h3>
+                                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes, you can reschedule an approved meeting. To do this, go to the "Review Meetings" page, select the "Approved" tab, find the meeting you want to reschedule, and click on it. From the meeting details page, you can update the confirmed date and time and save the changes. The brand will be automatically notified of the rescheduling.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingNine">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                        How do I manage brand users?
+                                    </button>
+                                </h3>
+                                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        As an administrator, you can manage brand users by going to the "User Management" section from the Admin Dashboard. Here, you can view all registered brand users, activate or deactivate accounts, reset passwords, and assign roles if necessary. You can also view a user's meeting history and other relevant information.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Technical Support -->
+                        <div>
+                            <h2 class="h4">Technical Support</h2>
+                            
+                            <div class="accordion-item mt-3">
+                                <h3 class="accordion-header" id="headingTen">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                                        I forgot my password. How can I reset it?
+                                    </button>
+                                </h3>
+                                <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        If you've forgotten your password, click on the "Login" link and then select "Forgot your password?" on the login page. Enter your email address, and we'll send you instructions to reset your password. Follow the link in the email to create a new password for your account.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingEleven">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                                        How can I change my account information?
+                                    </button>
+                                </h3>
+                                <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        To update your account information, log in to your account and click on your name in the top-right corner. Select "Profile" from the dropdown menu. On your profile page, you can edit your personal information, change your password, and update your notification preferences.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingTwelve">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                                        How do I contact support if I have a problem?
+                                    </button>
+                                </h3>
+                                <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingTwelve" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        If you're experiencing issues or have questions that aren't addressed in the FAQ, you can contact our support team by:
+                                        <ul>
+                                            <li>Sending an email to support@brandhandler.com</li>
+                                            <li>Using the contact form on our Contact page</li>
+                                            <li>Calling our support line at (555) 987-6543 during business hours</li>
+                                        </ul>
+                                        Our support team is available Monday through Friday, 9:00 AM to 5:00 PM.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <p>Didn't find what you were looking for? <a href="/Home/Contact" class="text-primary">Contact us</a> for further assistance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

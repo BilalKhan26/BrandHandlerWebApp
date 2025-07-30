@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Email Confirmation Sent";
+    Layout = "_AccountLayout";
+}
+
+<div class="account-container">
+    <div class="account-form">
+        <h2>@ViewData["Title"]</h2>
+        <div class="alert alert-success">
+            <p>We've sent a confirmation email to your email address.</p>
+            <p>Please check your inbox and click on the confirmation link to activate your account.</p>
+        </div>
+        <div class="mt-4">
+            <p>If you don't receive the email within a few minutes, please check your spam folder.</p>
+            <p>Once you've confirmed your email, you can <a asp-action="Login">login to your account</a>.</p>
+        </div>
+    </div>
+</div>

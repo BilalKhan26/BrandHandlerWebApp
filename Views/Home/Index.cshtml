@@ -1,8 +1,83 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h1 class="display-4 fw-bold">Brand Handler</h1>
+            <p class="lead">Streamline your brand meetings and collaborations with our efficient meeting management system.</p>
+            <p class="mb-4">Our platform connects brands with administrators for seamless scheduling, approval, and management of meetings.</p>
+            
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-primary btn-lg px-4 me-md-2">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                    </a>
+                    <a asp-controller="Account" asp-action="Register" class="btn btn-outline-primary btn-lg px-4">
+                        <i class="bi bi-person-plus me-2"></i>Register
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="Admin" asp-action="Index" class="btn btn-primary btn-lg px-4 me-md-2">
+                            <i class="bi bi-speedometer2 me-2"></i>Go to Dashboard
+                        </a>
+                    }
+                    else if (User.IsInRole("Brand"))
+                    {
+                        <a asp-controller="Brand" asp-action="Dashboard" class="btn btn-primary btn-lg px-4 me-md-2">
+                            <i class="bi bi-speedometer2 me-2"></i>Go to Dashboard
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+        <div class="col-md-6 d-none d-md-block">
+            <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
+                <img src="https://source.unsplash.com/random/600x400/?meeting" class="img-fluid" alt="Brand Meeting">
+                <div class="card-img-overlay d-flex align-items-end">
+                    <div class="bg-dark bg-opacity-75 text-white p-3 w-100">
+                        <h5 class="card-title">Efficient Meeting Management</h5>
+                        <p class="card-text small">Schedule, approve, and manage meetings all in one place.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-calendar-check text-primary" style="font-size: 3rem;"></i>
+                    <h3 class="card-title mt-3">Easy Scheduling</h3>
+                    <p class="card-text">Brands can easily request meetings with preferred dates and times.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-check-circle text-success" style="font-size: 3rem;"></i>
+                    <h3 class="card-title mt-3">Quick Approval</h3>
+                    <p class="card-text">Admins can review, approve, or reject meeting requests efficiently.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-camera-video text-info" style="font-size: 3rem;"></i>
+                    <h3 class="card-title mt-3">Virtual Meetings</h3>
+                    <p class="card-text">Connect through video conferencing links provided upon approval.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

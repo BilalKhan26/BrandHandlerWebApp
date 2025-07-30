@@ -1,0 +1,108 @@
+@model BrandHandlerWebApp.Models.Meeting
+@{
+    ViewData["Title"] = "Meeting Status";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Meeting Details</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h5 class="card-title">@Model.Title</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-muted">Requested on @Model.CreatedAt.ToString("MMM dd, yyyy")</span>
+                            @if (Model.Status == "Pending")
+                            {
+                                <span class="badge bg-warning text-dark">Pending</span>
+                            }
+                            else if (Model.Status == "Approved")
+                            {
+                                <span class="badge bg-success">Approved</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Rejected</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+                                    <p class="card-text">@Model.Description</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card bg-light h-100">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">Requested Date & Time</h6>
+                                    <p class="card-text">@Model.RequestedDateTime.ToString("dddd, MMMM dd, yyyy")<br />@Model.RequestedDateTime.ToString("h:mm tt")</p>
+                                </div>
+                            </div>
+                        </div>
+                        @if (Model.Status == "Approved")
+                        {
+                            <div class="col-md-6">
+                                <div class="card bg-light h-100">
+                                    <div class="card-body">
+                                        <h6 class="card-subtitle mb-2 text-muted">Confirmed Date & Time</h6>
+                                        <p class="card-text">@Model.ConfirmedDateTime?.ToString("dddd, MMMM dd, yyyy")<br />@Model.ConfirmedDateTime?.ToString("h:mm tt")</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    @if (Model.Status == "Approved" && !string.IsNullOrEmpty(Model.MeetingLink))
+                    {
+                        <div class="alert alert-success">
+                            <h5><i class="bi bi-check-circle"></i> Your meeting has been approved!</h5>
+                            <p>You can join the meeting using the link below at the scheduled time.</p>
+                            <div class="d-grid gap-2">
+                                <a href="@Model.MeetingLink" target="_blank" class="btn btn-success">
+                                    <i class="bi bi-camera-video"></i> Join Meeting
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    else if (Model.Status == "Pending")
+                    {
+                        <div class="alert alert-warning">
+                            <h5><i class="bi bi-hourglass-split"></i> Your meeting request is pending</h5>
+                            <p>We're reviewing your request and will notify you once it's approved.</p>
+                        </div>
+                    }
+                    else if (Model.Status == "Rejected")
+                    {
+                        <div class="alert alert-danger">
+                            <h5><i class="bi bi-x-circle"></i> Your meeting request was not approved</h5>
+                            <p>Please schedule a new meeting with a different time or contact support for assistance.</p>
+                        </div>
+                    }
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Back to Meetings
+                        </a>
+                        @if (Model.Status == "Pending")
+                        {
+                            <a asp-controller="Meeting" asp-action="Cancel" asp-route-id="@Model.Id" class="btn btn-danger">
+                                <i class="bi bi-x-circle"></i> Cancel Request
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Email Confirmed";
+    Layout = "_AccountLayout";
+}
+
+<div class="account-container">
+    <div class="account-form">
+        <h2>@ViewData["Title"]</h2>
+        <div class="alert alert-success">
+            <p>Thank you for confirming your email address!</p>
+            <p>Your account has been activated successfully.</p>
+        </div>
+        <div class="mt-4">
+            <p>You can now <a asp-action="Login">login to your account</a> and start scheduling meetings.</p>
+        </div>
+    </div>
+</div>

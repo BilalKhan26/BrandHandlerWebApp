@@ -1,0 +1,140 @@
+@model BrandHandlerWebApp.Models.Meeting
+@{
+    ViewData["Title"] = "Meeting Details";
+    var isAdmin = User.IsInRole("Admin");
+    var isBrand = User.IsInRole("Brand");
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Meeting Details</h4>
+                    <div>
+                        @if (isAdmin)
+                        {
+                            <a asp-controller="Admin" asp-action="ReviewMeetings" class="btn btn-outline-light btn-sm">
+                                <i class="bi bi-arrow-left"></i> Back to Meetings
+                            </a>
+                        }
+                        else if (isBrand)
+                        {
+                            <a asp-controller="Brand" asp-action="Index" class="btn btn-outline-light btn-sm">
+                                <i class="bi bi-arrow-left"></i> Back to Meetings
+                            </a>
+                        }
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <h5 class="border-bottom pb-2">Meeting Information</h5>
+                            <div class="row mt-3">
+                                <div class="col-md-4 fw-bold">Title:</div>
+                                <div class="col-md-8">@Model.Title</div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4 fw-bold">Description:</div>
+                                <div class="col-md-8">@Model.Description</div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4 fw-bold">Status:</div>
+                                <div class="col-md-8">
+                                    @switch (Model.Status)
+                                    {
+                                        case "Pending":
+                                            <span class="badge bg-warning text-dark">Pending</span>
+                                            break;
+                                        case "Approved":
+                                            <span class="badge bg-success">Approved</span>
+                                            break;
+                                        case "Rejected":
+                                            <span class="badge bg-danger">Rejected</span>
+                                            break;
+                                    }
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-4 fw-bold">Requested Date:</div>
+                                <div class="col-md-8">@Model.RequestedDateTime.ToString("dddd, MMMM dd, yyyy h:mm tt")</div>
+                            </div>
+                            @if (Model.Status == "Approved" && Model.ConfirmedDateTime.HasValue)
+                            {
+                                <div class="row mt-2">
+                                    <div class="col-md-4 fw-bold">Confirmed Date:</div>
+                                    <div class="col-md-8">@Model.ConfirmedDateTime.Value.ToString("dddd, MMMM dd, yyyy h:mm tt")</div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-4 fw-bold">Meeting Link:</div>
+                                    <div class="col-md-8">
+                                        @if (!string.IsNullOrEmpty(Model.MeetingLink))
+                                        {
+                                            <a href="@Model.MeetingLink" target="_blank" class="btn btn-sm btn-success">
+                                                <i class="bi bi-camera-video"></i> Join Meeting
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">Not available</span>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    @if (isAdmin)
+                    {
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <h5 class="border-bottom pb-2">Brand Information</h5>
+                                <div class="row mt-3">
+                                    <div class="col-md-4 fw-bold">Name:</div>
+                                    <div class="col-md-8">@Model.BrandUser?.FullName</div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-4 fw-bold">Email:</div>
+                                    <div class="col-md-8">@Model.BrandUser?.Email</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <h5 class="border-bottom pb-2">Timeline</h5>
+                            <div class="row mt-3">
+                                <div class="col-md-4 fw-bold">Created On:</div>
+                                <div class="col-md-8">@Model.CreatedAt.ToString("MMM dd, yyyy h:mm tt")</div>
+                            </div>
+                            @if (Model.UpdatedAt != Model.CreatedAt)
+                            {
+                                <div class="row mt-2">
+                                    <div class="col-md-4 fw-bold">Last Updated:</div>
+                                    <div class="col-md-8">@Model.UpdatedAt.ToString("MMM dd, yyyy h:mm tt")</div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    @if (isBrand && Model.Status == "Pending")
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5 class="border-bottom pb-2">Actions</h5>
+                                <div class="d-flex mt-3">
+                                    <form asp-controller="Meeting" asp-action="Cancel" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Are you sure you want to cancel this meeting request?');">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="bi bi-x-circle"></i> Cancel Request
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

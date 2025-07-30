@@ -1,0 +1,114 @@
+@model IEnumerable<BrandHandlerWebApp.Models.Meeting>
+@{
+    ViewData["Title"] = "My Meetings";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>My Meetings</h2>
+        <a asp-action="ScheduleMeeting" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Schedule New Meeting
+        </a>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Meeting Requests</h5>
+                </div>
+                <div class="card-body">
+                    @if (!Model.Any())
+                    {
+                        <div class="alert alert-info">
+                            You haven't scheduled any meetings yet. <a asp-action="ScheduleMeeting">Schedule your first meeting</a>.
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Requested Date</th>
+                                        <th>Status</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var meeting in Model)
+                                    {
+                                        <tr>
+                                            <td>@meeting.Title</td>
+                                            <td>@meeting.RequestedDateTime.ToString("MMM dd, yyyy h:mm tt")</td>
+                                            <td>
+                                                @if (meeting.Status == "Pending")
+                                                {
+                                                    <span class="badge bg-warning text-dark">Pending</span>
+                                                }
+                                                else if (meeting.Status == "Approved")
+                                                {
+                                                    <span class="badge bg-success">Approved</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-danger">Rejected</span>
+                                                }
+                                            </td>
+                                            <td>@meeting.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                            <td>
+                                                <a asp-action="MeetingStatus" asp-route-id="@meeting.Id" class="btn btn-sm btn-info">
+                                                    <i class="bi bi-eye"></i> Details
+                                                </a>
+                                                @if (meeting.Status == "Pending")
+                                                {
+                                                    <a asp-controller="Meeting" asp-action="Cancel" asp-route-id="@meeting.Id" class="btn btn-sm btn-danger">
+                                                        <i class="bi bi-x-circle"></i> Cancel
+                                                    </a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Quick Stats</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded">
+                                <h3>@Model.Count(m => m.Status == "Pending")</h3>
+                                <p class="mb-0">Pending Meetings</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded">
+                                <h3>@Model.Count(m => m.Status == "Approved")</h3>
+                                <p class="mb-0">Approved Meetings</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 border rounded">
+                                <h3>@Model.Count(m => m.Status == "Rejected")</h3>
+                                <p class="mb-0">Rejected Meetings</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

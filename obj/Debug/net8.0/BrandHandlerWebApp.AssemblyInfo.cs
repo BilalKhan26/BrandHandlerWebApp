@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BrandHandlerWebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+092bbead10b34c8dc669fd55453a6cf66480481f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ebe60fffaa709e49b11a76397ee329d5fa8627c")]
 [assembly: System.Reflection.AssemblyProductAttribute("BrandHandlerWebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BrandHandlerWebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

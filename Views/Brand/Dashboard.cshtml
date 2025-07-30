@@ -1,0 +1,134 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Brand Dashboard</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card text-center mb-3">
+                                <div class="card-body">
+                                    <h1 class="display-4">@ViewBag.PendingMeetings</h1>
+                                    <p class="lead">Pending Meetings</p>
+                                </div>
+                                <div class="card-footer bg-warning">
+                                    <a asp-action="Index" class="text-dark text-decoration-none">View Pending</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-center mb-3">
+                                <div class="card-body">
+                                    <h1 class="display-4">@ViewBag.ApprovedMeetings</h1>
+                                    <p class="lead">Approved Meetings</p>
+                                </div>
+                                <div class="card-footer bg-success text-white">
+                                    <a asp-action="Index" class="text-white text-decoration-none">View Approved</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-center mb-3">
+                                <div class="card-body">
+                                    <h1 class="display-4">@ViewBag.RejectedMeetings</h1>
+                                    <p class="lead">Rejected Meetings</p>
+                                </div>
+                                <div class="card-footer bg-danger text-white">
+                                    <a asp-action="Index" class="text-white text-decoration-none">View Rejected</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Upcoming Meetings</h4>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.UpcomingMeetings == null || ViewBag.UpcomingMeetings.Count == 0)
+                    {
+                        <div class="alert alert-info">
+                            <p>You don't have any upcoming meetings scheduled.</p>
+                            <a asp-action="ScheduleMeeting" class="btn btn-primary mt-2">
+                                <i class="bi bi-plus-circle"></i> Schedule a Meeting
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Date & Time</th>
+                                        <th>Meeting Link</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var meeting in ViewBag.UpcomingMeetings)
+                                    {
+                                        <tr>
+                                            <td>@meeting.Title</td>
+                                            <td>@meeting.ConfirmedDateTime?.ToString("MMM dd, yyyy h:mm tt")</td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(meeting.MeetingLink))
+                                                {
+                                                    <a href="@meeting.MeetingLink" target="_blank" class="btn btn-sm btn-success">
+                                                        <i class="bi bi-camera-video"></i> Join
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">Not available</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a asp-action="MeetingStatus" asp-route-id="@meeting.Id" class="btn btn-sm btn-info">
+                                                    <i class="bi bi-eye"></i> Details
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">Quick Actions</h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-wrap justify-content-around">
+                        <a asp-action="ScheduleMeeting" class="btn btn-lg btn-outline-primary m-2">
+                            <i class="bi bi-calendar-plus"></i><br />Schedule Meeting
+                        </a>
+                        <a asp-action="Index" class="btn btn-lg btn-outline-secondary m-2">
+                            <i class="bi bi-list-check"></i><br />View All Meetings
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

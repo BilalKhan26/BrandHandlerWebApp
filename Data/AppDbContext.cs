@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using WebApplication10.Models;
+using BrandHandlerWebApp.Models;
+
 namespace BrandHandlerWebApp.Data
 {
-    public class AppDbContext:IdentityDbContext<Users>
+    public class AppDbContext : IdentityDbContext<Users>
     {
-        public AppDbContext(DbContextOptions options ):base(options)
+        public AppDbContext(DbContextOptions options ) : base(options)
         {
 
         }
-
+        
+        public DbSet<Meeting> Meetings { get; set; }
     }
 }

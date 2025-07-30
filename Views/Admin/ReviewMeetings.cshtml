@@ -1,0 +1,179 @@
+@model IEnumerable<BrandHandlerWebApp.Models.Meeting>
+@{
+    ViewData["Title"] = "Review Meetings";
+}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Meeting Requests</h4>
+                    <div>
+                        <a asp-action="Index" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-arrow-left"></i> Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-tabs mb-3" id="meetingTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab" aria-controls="pending" aria-selected="true">
+                                Pending <span class="badge bg-warning text-dark">@Model.Count(m => m.Status == "Pending")</span>
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="approved-tab" data-bs-toggle="tab" data-bs-target="#approved" type="button" role="tab" aria-controls="approved" aria-selected="false">
+                                Approved <span class="badge bg-success">@Model.Count(m => m.Status == "Approved")</span>
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="rejected-tab" data-bs-toggle="tab" data-bs-target="#rejected" type="button" role="tab" aria-controls="rejected" aria-selected="false">
+                                Rejected <span class="badge bg-danger">@Model.Count(m => m.Status == "Rejected")</span>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="meetingTabsContent">
+                        <!-- Pending Meetings Tab -->
+                        <div class="tab-pane fade show active" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                            @if (!Model.Any(m => m.Status == "Pending"))
+                            {
+                                <div class="alert alert-info">
+                                    <p class="mb-0">There are no pending meeting requests at this time.</p>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Brand</th>
+                                                <th>Requested Date</th>
+                                                <th>Requested On</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var meeting in Model.Where(m => m.Status == "Pending").OrderByDescending(m => m.CreatedAt))
+                                            {
+                                                <tr>
+                                                    <td>@meeting.Title</td>
+                                                    <td>@meeting.BrandUser?.FullName</td>
+                                                    <td>@meeting.RequestedDateTime.ToString("MMM dd, yyyy h:mm tt")</td>
+                                                    <td>@meeting.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                                    <td>
+                                                        <a asp-action="MeetingDetails" asp-route-id="@meeting.Id" class="btn btn-sm btn-info">
+                                                            <i class="bi bi-eye"></i> View
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Approved Meetings Tab -->
+                        <div class="tab-pane fade" id="approved" role="tabpanel" aria-labelledby="approved-tab">
+                            @if (!Model.Any(m => m.Status == "Approved"))
+                            {
+                                <div class="alert alert-info">
+                                    <p class="mb-0">There are no approved meetings at this time.</p>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Brand</th>
+                                                <th>Confirmed Date</th>
+                                                <th>Meeting Link</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var meeting in Model.Where(m => m.Status == "Approved").OrderByDescending(m => m.ConfirmedDateTime))
+                                            {
+                                                <tr>
+                                                    <td>@meeting.Title</td>
+                                                    <td>@meeting.BrandUser?.FullName</td>
+                                                    <td>@meeting.ConfirmedDateTime?.ToString("MMM dd, yyyy h:mm tt")</td>
+                                                    <td>
+                                                        @if (!string.IsNullOrEmpty(meeting.MeetingLink))
+                                                        {
+                                                            <a href="@meeting.MeetingLink" target="_blank" class="btn btn-sm btn-success">
+                                                                <i class="bi bi-camera-video"></i> Join
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="text-muted">Not available</span>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        <a asp-action="MeetingDetails" asp-route-id="@meeting.Id" class="btn btn-sm btn-info">
+                                                            <i class="bi bi-eye"></i> View
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Rejected Meetings Tab -->
+                        <div class="tab-pane fade" id="rejected" role="tabpanel" aria-labelledby="rejected-tab">
+                            @if (!Model.Any(m => m.Status == "Rejected"))
+                            {
+                                <div class="alert alert-info">
+                                    <p class="mb-0">There are no rejected meetings at this time.</p>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Brand</th>
+                                                <th>Requested Date</th>
+                                                <th>Rejected On</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var meeting in Model.Where(m => m.Status == "Rejected").OrderByDescending(m => m.UpdatedAt))
+                                            {
+                                                <tr>
+                                                    <td>@meeting.Title</td>
+                                                    <td>@meeting.BrandUser?.FullName</td>
+                                                    <td>@meeting.RequestedDateTime.ToString("MMM dd, yyyy h:mm tt")</td>
+                                                    <td>@meeting.UpdatedAt.ToString("MMM dd, yyyy")</td>
+                                                    <td>
+                                                        <a asp-action="MeetingDetails" asp-route-id="@meeting.Id" class="btn btn-sm btn-info">
+                                                            <i class="bi bi-eye"></i> View
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
