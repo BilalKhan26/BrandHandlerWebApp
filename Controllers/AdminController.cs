@@ -32,27 +32,17 @@ namespace BrandHandlerWebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            // Get counts for dashboard stats
-            var pendingMeetings = await _context.Meetings
-                .CountAsync(m => m.Status == Constants.MeetingStatusPending);
+            var pendingMeetings = await _context.Meetings.CountAsync(m => m.Status == Constants.MeetingStatusPending);
+            var approvedMeetings = await _context.Meetings.CountAsync(m => m.Status == Constants.MeetingStatusApproved);
+            var rejectedMeetings = await _context.Meetings.CountAsync(m => m.Status == Constants.MeetingStatusRejected);
+            var brandUsers = await _context.Users.CountAsync(u => u.Role == "Brand");
 
-            var approvedMeetings = await _context.Meetings
-                .CountAsync(m => m.Status == Constants.MeetingStatusApproved);
-
-            var rejectedMeetings = await _context.Meetings
-                .CountAsync(m => m.Status == Constants.MeetingStatusRejected);
-
-            var brandUsers = await _context.Users
-                .CountAsync(u => u.Role == "Brand");
-
-            // Get recent meetings (last 5)
             var recentMeetings = await _context.Meetings
                 .Include(m => m.BrandUser)
                 .OrderByDescending(m => m.CreatedAt)
                 .Take(5)
                 .ToListAsync();
 
-            // Pass data to view
             ViewBag.PendingMeetings = pendingMeetings;
             ViewBag.ApprovedMeetings = approvedMeetings;
             ViewBag.RejectedMeetings = rejectedMeetings;
@@ -64,13 +54,12 @@ namespace BrandHandlerWebApp.Controllers
 
         public async Task<IActionResult> ReviewMeetings()
         {
-            var pendingMeetings = await _context.Meetings
-                .Where(m => m.Status == Constants.MeetingStatusPending)
+            var allMeetings = await _context.Meetings
                 .Include(m => m.BrandUser)
                 .OrderByDescending(m => m.CreatedAt)
                 .ToListAsync();
 
-            return View(pendingMeetings);
+            return View(allMeetings);
         }
 
         public async Task<IActionResult> MeetingDetails(int id)
@@ -81,15 +70,13 @@ namespace BrandHandlerWebApp.Controllers
 
             if (meeting == null)
             {
-                _logger.LogWarning($"Meeting with ID {id} not found for approval.");
+                _logger.LogWarning($"Meeting with ID {id} not found for details.");
                 return NotFound();
             }
 
             return View(meeting);
         }
 
-
-        
         public async Task<IActionResult> ManageUsers()
         {
             var users = await _context.Users
@@ -100,7 +87,6 @@ namespace BrandHandlerWebApp.Controllers
             return View(users);
         }
 
-
         [HttpGet]
         public async Task<IActionResult> ApproveMeeting(int id)
         {
@@ -108,18 +94,15 @@ namespace BrandHandlerWebApp.Controllers
                 .Include(m => m.BrandUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (meeting == null)
-            {
-                return NotFound();
-            }
+            if (meeting == null) return NotFound();
 
             var viewModel = new MeetingApprovalViewModel
             {
                 MeetingId = meeting.Id,
-                ConfirmedDateTime = (DateTime)meeting.RequestedDateTime
+                ConfirmedDateTime = meeting.RequestedDateTime ?? DateTime.Now
             };
 
-            return View(viewModel);
+            return View("ApproveMeeting", viewModel);
         }
 
         [HttpPost]
@@ -128,13 +111,7 @@ namespace BrandHandlerWebApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                foreach (var modelStateEntry in ModelState.Values)
-                {
-                    foreach (var error in modelStateEntry.Errors)
-                    {
-                        _logger.LogError($"Model Error: {error.ErrorMessage}");
-                    }
-                }
+                _logger.LogWarning("Invalid model state for approval.");
                 return View(model);
             }
 
@@ -142,79 +119,131 @@ namespace BrandHandlerWebApp.Controllers
                 .Include(m => m.BrandUser)
                 .FirstOrDefaultAsync(m => m.Id == model.MeetingId);
 
-            if (meeting == null)
-            {
-                return NotFound();
-            }
+            if (meeting == null) return NotFound();
 
-            // Get current admin user
             var adminUser = await _userManager.GetUserAsync(User);
 
-            // Update meeting details
             meeting.Status = Constants.MeetingStatusApproved;
             meeting.ConfirmedDateTime = model.ConfirmedDateTime;
             meeting.MeetingLink = model.MeetingLink;
             meeting.AdminUserId = adminUser.Id;
             meeting.UpdatedAt = DateTime.Now;
+            meeting.AdminNotes = model.Notes;
 
             _context.Update(meeting);
-            _logger.LogInformation($"Attempting to save changes for meeting {meeting.Id}.");
             await _context.SaveChangesAsync();
-            _logger.LogInformation($"Changes saved successfully for meeting {meeting.Id}.");
 
-            // Send confirmation email to brand user with meeting details, limit to 3 notifications
             if (meeting.NotificationCount < 3)
-            {
-                var emailSubject = "Your Meeting Request Has Been Approved";
-                var emailBody = $"Hello {meeting.BrandUser.FullName},\n\n" +
-                              $"Your meeting request for '{meeting.Title}' has been approved.\n\n" +
-                              $"Confirmed Date & Time: {meeting.ConfirmedDateTime?.ToString("f")}\n" +
-                              $"Meeting Link: {meeting.MeetingLink}\n\n" +
-                              "Please let us know if you have any questions.\n\n" +
-                              "Best regards,\n" +
-                              "The Admin Team";
-                              
-                await _emailService.SendEmailAsync(meeting.BrandUser.Email, emailSubject, emailBody);
-                meeting.NotificationCount++;
-                _context.Update(meeting);
-                await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Meeting approved and notification email sent.";
-            }
-            else
-            {
-                TempData["InfoMessage"] = "Meeting approved, but notification limit reached. Email not sent.";
-            }
+              {
+                  var emailSubject = "Your Meeting Request Has Been Approved";
+                  var emailBody = $"Hello {meeting.BrandUser.FullName},\n\n" +
+                                  $"Your meeting for '{meeting.Title}' has been approved.\n" +
+                                  $"Confirmed Date & Time: {meeting.ConfirmedDateTime:f}\n" +
+                                  $"Meeting Link: {meeting.MeetingLink}\n\n" +
+                                  "Best regards,\nThe Admin Team";
+  
+                  await _emailService.SendEmailAsync(meeting.BrandUser.Email, emailSubject, emailBody);
+                  meeting.NotificationCount++;
+                  _context.Update(meeting);
+                  await _context.SaveChangesAsync();
+  
+                  TempData["SuccessMessage"] = "Meeting approved and notification email sent.";
+              }
+              else
+              {
+                  TempData["InfoMessage"] = "Meeting approved, but email not sent (limit reached).";
+              }
+  
+              return RedirectToAction(nameof(ReviewMeetings));
+         }
 
-            _logger.LogInformation($"Meeting {meeting.Id} approved by admin {adminUser.Email}.");
-            _logger.LogInformation($"Redirecting to ReviewMeetings after approving meeting {meeting.Id}.");
+        [HttpGet]
+        public async Task<IActionResult> DeleteMeeting(int id)
+        {
+            var meeting = await _context.Meetings
+                .Include(m => m.BrandUser)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (meeting == null) return NotFound();
+
+            return View(meeting);
+        }
+
+        [HttpPost, ActionName("DeleteMeeting")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteMeetingConfirmed(int id)
+        {
+            var meeting = await _context.Meetings.FindAsync(id);
+            if (meeting == null) return NotFound();
+
+            _context.Meetings.Remove(meeting);
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Meeting deleted successfully.";
             return RedirectToAction(nameof(ReviewMeetings));
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public async Task<IActionResult> RejectMeeting(int id)
         {
             var meeting = await _context.Meetings
                 .Include(m => m.BrandUser)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (meeting == null)
+            if (meeting == null) return NotFound();
+
+            var model = new MeetingRejectionViewModel
             {
-                return NotFound();
+                MeetingId = meeting.Id
+            };
+
+            return View("RejectMeeting", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RejectMeeting(MeetingRejectionViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("RejectMeeting", model);
             }
 
-            // Get current admin user
+            var meeting = await _context.Meetings
+                .Include(m => m.BrandUser)
+                .FirstOrDefaultAsync(m => m.Id == model.MeetingId);
+
+            if (meeting == null) return NotFound();
+
             var adminUser = await _userManager.GetUserAsync(User);
 
-            // Update meeting status
             meeting.Status = Constants.MeetingStatusRejected;
             meeting.AdminUserId = adminUser.Id;
             meeting.UpdatedAt = DateTime.Now;
+            meeting.AdminNotes = model.RejectionReason;
 
             _context.Update(meeting);
             await _context.SaveChangesAsync();
 
-            _logger.LogInformation($"Meeting {meeting.Id} rejected by admin {adminUser.Email}");
+            if (meeting.NotificationCount < 3)
+            {
+                var emailSubject = "Your Meeting Request Has Been Rejected";
+                var emailBody = $"Hello {meeting.BrandUser.FullName},\n\n" +
+                                $"Your meeting for '{meeting.Title}' has been rejected.\n" +
+                                $"Reason: {model.RejectionReason}\n\n" +
+                                "Best regards,\nThe Admin Team";
+
+                await _emailService.SendEmailAsync(meeting.BrandUser.Email, emailSubject, emailBody);
+                meeting.NotificationCount++;
+                _context.Update(meeting);
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = "Meeting rejected and email sent.";
+            }
+            else
+            {
+                TempData["InfoMessage"] = "Meeting rejected, but email not sent (limit reached).";
+            }
 
             return RedirectToAction(nameof(ReviewMeetings));
         }

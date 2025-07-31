@@ -19,6 +19,6 @@ namespace BrandHandlerWebApp.ViewModels
         
         [Display(Name = "Admin Notes")]
         [StringLength(500, ErrorMessage = "Notes cannot exceed 500 characters.")]
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
     }
 }

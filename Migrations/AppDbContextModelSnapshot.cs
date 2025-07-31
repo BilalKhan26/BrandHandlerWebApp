@@ -30,6 +30,9 @@ namespace BrandHandlerWebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AdminNotes")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AdminUserId")
                         .HasColumnType("nvarchar(450)");
 

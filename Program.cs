@@ -49,6 +49,7 @@ namespace BrandHandlerWebApp
             using (var scope = app.Services.CreateScope())
             {
                 await RoleInitializer.InitializeAsync(scope.ServiceProvider);
+                await RoleInitializer.SeedMeetingsAsync(scope.ServiceProvider);
             }
             
             // Configure the HTTP request pipeline.

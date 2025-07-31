@@ -89,6 +89,9 @@
                                                         <a asp-action="MeetingDetails" asp-route-id="@meeting.Id" class="btn btn-sm btn-info">
                                                             <i class="bi bi-eye"></i> View
                                                         </a>
+                                                        <a asp-action="DeleteMeeting" asp-route-id="@meeting.Id" class="btn btn-sm btn-danger">
+                                                            <i class="bi bi-trash"></i> Delete
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             }

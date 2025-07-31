@@ -88,13 +88,24 @@
 
     <!-- Action Row -->
     <div class="row mb-4">
-        <div class="col">
+        <div class="col-md-6 mb-4">
             <div class="card shadow">
                 <div class="card-body text-center">
                     <h5 class="card-title">Schedule a New Meeting</h5>
                     <p class="card-text">Request a meeting with our admin team</p>
                     <a href="@Url.Action("ScheduleMeeting", "Brand")" class="btn btn-primary">
                         <i class="bi bi-calendar-plus"></i> Schedule Meeting
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">View Meeting History</h5>
+                    <p class="card-text">Review all past and present meeting requests</p>
+                    <a href="@Url.Action("ReviewMeetings", "Admin")" class="btn btn-info">
+                        <i class="bi bi-clock-history"></i> View History
                     </a>
                 </div>
             </div>
@@ -142,9 +153,7 @@
                                                 @if (meeting.Status == Constants.MeetingStatusPending)
                                                 {
                                                     <a href="@Url.Action("EditMeeting", "Brand", new { id = meeting.Id })" class="btn btn-sm btn-warning">Edit</a>
-                                                 <form asp-action="DeleteMeeting" asp-route-id="@meeting.Id" method="post" class="d-inline">
-                                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this meeting request?');">Delete</button>
-                                                 </form>
+
                                                  }
                                              </td>
                                         </tr>

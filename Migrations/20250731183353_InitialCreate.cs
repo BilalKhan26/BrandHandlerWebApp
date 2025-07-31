@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BrandHandlerWebApp.Migrations
 {
     /// <inheritdoc />
-    public partial class initDB : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,7 +33,7 @@ namespace BrandHandlerWebApp.Migrations
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsEmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    ConfirmationToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ConfirmationToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -171,11 +171,13 @@ namespace BrandHandlerWebApp.Migrations
                     RequestedDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ConfirmedDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     BrandUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    AdminUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AdminUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MeetingLink = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MeetingLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    NotificationCount = table.Column<int>(type: "int", nullable: false),
+                    AdminNotes = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

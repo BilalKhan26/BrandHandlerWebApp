@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BrandHandlerWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250731152149_newinito")]
-    partial class newinito
+    [Migration("20250731183353_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace BrandHandlerWebApp.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdminNotes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AdminUserId")
                         .HasColumnType("nvarchar(450)");
@@ -52,6 +55,9 @@ namespace BrandHandlerWebApp.Migrations
 
                     b.Property<string>("MeetingLink")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NotificationCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("RequestedDateTime")
                         .IsRequired()

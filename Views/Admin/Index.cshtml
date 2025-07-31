@@ -5,9 +5,14 @@
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 mb-0 text-gray-800">Admin Dashboard</h1>
-        <a href="@Url.Action("ManageUsers", "Admin")" class="btn btn-primary">
-            <i class="bi bi-people-fill"></i> Manage Brands
-        </a>
+        <div class="d-flex">
+            <a href="@Url.Action("ManageUsers", "Admin")" class="btn btn-primary mr-2">
+                <i class="bi bi-people-fill"></i> Manage Brands
+            </a>
+            <a href="@Url.Action("ReviewMeetings", "Admin")" class="btn btn-info">
+                <i class="bi bi-clock-history"></i> View Meeting History
+            </a>
+        </div>
     </div>
 
     <!-- Stats Row -->
