@@ -81,6 +81,7 @@ namespace BrandHandlerWebApp.Controllers
 
             if (meeting == null)
             {
+                _logger.LogWarning($"Meeting with ID {id} not found for approval.");
                 return NotFound();
             }
 
@@ -127,6 +128,13 @@ namespace BrandHandlerWebApp.Controllers
         {
             if (!ModelState.IsValid)
             {
+                foreach (var modelStateEntry in ModelState.Values)
+                {
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        _logger.LogError($"Model Error: {error.ErrorMessage}");
+                    }
+                }
                 return View(model);
             }
 
@@ -150,13 +158,35 @@ namespace BrandHandlerWebApp.Controllers
             meeting.UpdatedAt = DateTime.Now;
 
             _context.Update(meeting);
+            _logger.LogInformation($"Attempting to save changes for meeting {meeting.Id}.");
             await _context.SaveChangesAsync();
+            _logger.LogInformation($"Changes saved successfully for meeting {meeting.Id}.");
 
-            // Send confirmation email to brand user
-            await _emailService.SendMeetingConfirmationAsync(meeting);
+            // Send confirmation email to brand user with meeting details, limit to 3 notifications
+            if (meeting.NotificationCount < 3)
+            {
+                var emailSubject = "Your Meeting Request Has Been Approved";
+                var emailBody = $"Hello {meeting.BrandUser.FullName},\n\n" +
+                              $"Your meeting request for '{meeting.Title}' has been approved.\n\n" +
+                              $"Confirmed Date & Time: {meeting.ConfirmedDateTime?.ToString("f")}\n" +
+                              $"Meeting Link: {meeting.MeetingLink}\n\n" +
+                              "Please let us know if you have any questions.\n\n" +
+                              "Best regards,\n" +
+                              "The Admin Team";
+                              
+                await _emailService.SendEmailAsync(meeting.BrandUser.Email, emailSubject, emailBody);
+                meeting.NotificationCount++;
+                _context.Update(meeting);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Meeting approved and notification email sent.";
+            }
+            else
+            {
+                TempData["InfoMessage"] = "Meeting approved, but notification limit reached. Email not sent.";
+            }
 
-            _logger.LogInformation($"Meeting {meeting.Id} approved by admin {adminUser.Email}");
-
+            _logger.LogInformation($"Meeting {meeting.Id} approved by admin {adminUser.Email}.");
+            _logger.LogInformation($"Redirecting to ReviewMeetings after approving meeting {meeting.Id}.");
             return RedirectToAction(nameof(ReviewMeetings));
         }
 

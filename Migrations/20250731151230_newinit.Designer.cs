@@ -4,6 +4,7 @@ using BrandHandlerWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BrandHandlerWebApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250731151230_newinit")]
+    partial class newinit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,9 +52,6 @@ namespace BrandHandlerWebApp.Migrations
 
                     b.Property<string>("MeetingLink")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NotificationCount")
-                        .HasColumnType("int");
 
                     b.Property<DateTime?>("RequestedDateTime")
                         .IsRequired()

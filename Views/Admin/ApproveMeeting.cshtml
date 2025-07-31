@@ -1,0 +1,44 @@
+@model BrandHandlerWebApp.ViewModels.MeetingApprovalViewModel
+
+@{ 
+    ViewData["Title"] = "Approve Meeting";
+}
+
+<h1>Approve Meeting</h1>
+
+<h4>Meeting Details</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="ApproveMeeting">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MeetingId" />
+            <div class="form-group">
+                <label asp-for="ConfirmedDateTime" class="control-label"></label>
+                <input asp-for="ConfirmedDateTime" class="form-control" type="datetime-local" />
+                <span asp-validation-for="ConfirmedDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MeetingLink" class="control-label"></label>
+                <input asp-for="MeetingLink" class="form-control" />
+                <span asp-validation-for="MeetingLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <textarea asp-for="Notes" class="form-control"></textarea>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Approve" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ReviewMeetings">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

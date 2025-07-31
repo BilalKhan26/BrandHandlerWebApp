@@ -86,5 +86,10 @@ namespace BrandHandlerWebApp.Services
                 throw;
             }
         }
+
+        Task IEmailService.SendEmailAsync(string? email, string emailSubject, string emailBody)
+        {
+            return SendEmailAsync(email, emailSubject, emailBody);
+        }
     }
 }

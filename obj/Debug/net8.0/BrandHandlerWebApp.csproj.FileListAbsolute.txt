@@ -143,10 +143,10 @@ C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\staticwebassets.bu
 C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\BrandHan.00F4D130.Up2Date
 C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\BrandHandlerWebApp.dll
 C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\refint\BrandHandlerWebApp.dll
 C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\BrandHandlerWebApp.pdb
 C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\BrandHandlerWebApp.genruntimeconfig.cache
 C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\ref\BrandHandlerWebApp.dll
+C:\Users\mbk\source\repos\BrandHandlerWebApp\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

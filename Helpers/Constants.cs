@@ -4,7 +4,7 @@ namespace BrandHandlerWebApp.Helpers
     {
         // Roles
         public const string AdminRole = "Admin";
-        public const string BrandRole = "User";
+        public const string BrandRole = "Brand";
         
         // Meeting Status
         public const string MeetingStatusPending = "Pending";
