@@ -1,3 +1,4 @@
+@using BrandHandlerWebApp.Helpers
 @model BrandHandlerWebApp.Controllers.BrandDashboardViewModel
 @{
     ViewData["Title"] = "Brand Dashboard";
@@ -125,7 +126,7 @@
                                     {
                                         <tr>
                                             <td>@meeting.Title</td>
-                                            <td>@meeting.RequestedDateTime.ToString("g")</td>
+                                            <td>@meeting.RequestedDateTime?.ToString("g")</td>
                                             <td>
                                                 <span class="badge 
                                                     @(meeting.Status == "Pending" ? "bg-warning" : 
