@@ -1,48 +1,83 @@
+@model BrandHandlerWebApp.Controllers.BrandDashboardViewModel
 @{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "Brand Dashboard";
 }
 
-<div class="container mt-4">
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Brand Dashboard</h4>
-                </div>
+<div class="container-fluid">
+    <h1 class="h3 mb-4 text-gray-800">Brand Dashboard</h1>
+
+    <!-- Stats Row -->
+    <div class="row">
+        <!-- Pending Meetings -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card text-center mb-3">
-                                <div class="card-body">
-                                    <h1 class="display-4">@ViewBag.PendingMeetings</h1>
-                                    <p class="lead">Pending Meetings</p>
-                                </div>
-                                <div class="card-footer bg-warning">
-                                    <a asp-action="Index" class="text-dark text-decoration-none">View Pending</a>
-                                </div>
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Pending Meetings
                             </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.PendingMeetings</div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card text-center mb-3">
-                                <div class="card-body">
-                                    <h1 class="display-4">@ViewBag.ApprovedMeetings</h1>
-                                    <p class="lead">Approved Meetings</p>
-                                </div>
-                                <div class="card-footer bg-success text-white">
-                                    <a asp-action="Index" class="text-white text-decoration-none">View Approved</a>
-                                </div>
-                            </div>
+                        <div class="col-auto">
+                            <i class="bi bi-clock fs-2 text-warning"></i>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card text-center mb-3">
-                                <div class="card-body">
-                                    <h1 class="display-4">@ViewBag.RejectedMeetings</h1>
-                                    <p class="lead">Rejected Meetings</p>
-                                </div>
-                                <div class="card-footer bg-danger text-white">
-                                    <a asp-action="Index" class="text-white text-decoration-none">View Rejected</a>
-                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Approved Meetings -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Approved Meetings
                             </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.ApprovedMeetings</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-check-circle fs-2 text-success"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rejected Meetings -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                Rejected Meetings
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.RejectedMeetings</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-x-circle fs-2 text-danger"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Meetings -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                Total Meetings
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@(Model.PendingMeetings + Model.ApprovedMeetings + Model.RejectedMeetings)</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-calendar fs-2 text-info"></i>
                         </div>
                     </div>
                 </div>
@@ -50,85 +85,88 @@
         </div>
     </div>
 
+    <!-- Action Row -->
     <div class="row mb-4">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-success text-white">
-                    <h4 class="mb-0">Upcoming Meetings</h4>
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Schedule a New Meeting</h5>
+                    <p class="card-text">Request a meeting with our admin team</p>
+                    <a href="@Url.Action("ScheduleMeeting", "Brand")" class="btn btn-primary">
+                        <i class="bi bi-calendar-plus"></i> Schedule Meeting
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Meetings -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Upcoming Meetings</h6>
                 </div>
                 <div class="card-body">
-                    @if (ViewBag.UpcomingMeetings == null || ViewBag.UpcomingMeetings.Count == 0)
-                    {
-                        <div class="alert alert-info">
-                            <p>You don't have any upcoming meetings scheduled.</p>
-                            <a asp-action="ScheduleMeeting" class="btn btn-primary mt-2">
-                                <i class="bi bi-plus-circle"></i> Schedule a Meeting
-                            </a>
-                        </div>
-                    }
-                    else
+                    @if (Model.UpcomingMeetings.Any())
                     {
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-bordered" id="meetingsTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>Title</th>
-                                        <th>Date & Time</th>
-                                        <th>Meeting Link</th>
+                                        <th>Requested Date</th>
+                                        <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var meeting in ViewBag.UpcomingMeetings)
+                                    @foreach (var meeting in Model.UpcomingMeetings)
                                     {
                                         <tr>
                                             <td>@meeting.Title</td>
-                                            <td>@meeting.ConfirmedDateTime?.ToString("MMM dd, yyyy h:mm tt")</td>
+                                            <td>@meeting.RequestedDateTime.ToString("g")</td>
                                             <td>
-                                                @if (!string.IsNullOrEmpty(meeting.MeetingLink))
-                                                {
-                                                    <a href="@meeting.MeetingLink" target="_blank" class="btn btn-sm btn-success">
-                                                        <i class="bi bi-camera-video"></i> Join
-                                                    </a>
-                                                }
-                                                else
-                                                {
-                                                    <span class="text-muted">Not available</span>
-                                                }
+                                                <span class="badge 
+                                                    @(meeting.Status == "Pending" ? "bg-warning" : 
+                                                      meeting.Status == "Approved" ? "bg-success" : "bg-danger")">
+                                                    @meeting.Status
+                                                </span>
                                             </td>
                                             <td>
-                                                <a asp-action="MeetingStatus" asp-route-id="@meeting.Id" class="btn btn-sm btn-info">
-                                                    <i class="bi bi-eye"></i> Details
+                                                <a href="@Url.Action("MeetingStatus", "Brand", new { id = meeting.Id })" 
+                                                   class="btn btn-sm btn-info">
+                                                    <i class="bi bi-eye"></i> View
                                                 </a>
-                                            </td>
+                                                @if (meeting.Status == Constants.MeetingStatusPending)
+                                                {
+                                                    <a href="@Url.Action("EditMeeting", "Brand", new { id = meeting.Id })" class="btn btn-sm btn-warning">Edit</a>
+                                                 <form asp-action="DeleteMeeting" asp-route-id="@meeting.Id" method="post" class="d-inline">
+                                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this meeting request?');">Delete</button>
+                                                 </form>
+                                                 }
+                                             </td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     }
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-info text-white">
-                    <h4 class="mb-0">Quick Actions</h4>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex flex-wrap justify-content-around">
-                        <a asp-action="ScheduleMeeting" class="btn btn-lg btn-outline-primary m-2">
-                            <i class="bi bi-calendar-plus"></i><br />Schedule Meeting
-                        </a>
-                        <a asp-action="Index" class="btn btn-lg btn-outline-secondary m-2">
-                            <i class="bi bi-list-check"></i><br />View All Meetings
-                        </a>
-                    </div>
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="bi bi-calendar-x fs-1 text-muted mb-3"></i>
+                            <p class="text-muted mb-0">No upcoming meetings found.</p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        // You can add any dashboard-specific JavaScript here
+    </script>
+}

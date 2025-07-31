@@ -32,6 +32,33 @@ namespace BrandHandlerWebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            // Get counts for dashboard stats
+            var pendingMeetings = await _context.Meetings
+                .CountAsync(m => m.Status == Constants.MeetingStatusPending);
+
+            var approvedMeetings = await _context.Meetings
+                .CountAsync(m => m.Status == Constants.MeetingStatusApproved);
+
+            var rejectedMeetings = await _context.Meetings
+                .CountAsync(m => m.Status == Constants.MeetingStatusRejected);
+
+            var brandUsers = await _context.Users
+                .CountAsync(u => u.Role == "Brand");
+
+            // Get recent meetings (last 5)
+            var recentMeetings = await _context.Meetings
+                .Include(m => m.BrandUser)
+                .OrderByDescending(m => m.CreatedAt)
+                .Take(5)
+                .ToListAsync();
+
+            // Pass data to view
+            ViewBag.PendingMeetings = pendingMeetings;
+            ViewBag.ApprovedMeetings = approvedMeetings;
+            ViewBag.RejectedMeetings = rejectedMeetings;
+            ViewBag.BrandUsers = brandUsers;
+            ViewBag.RecentMeetings = recentMeetings;
+
             return View();
         }
 
@@ -62,9 +89,14 @@ namespace BrandHandlerWebApp.Controllers
 
 
         
-        public IActionResult ManageUsers()
+        public async Task<IActionResult> ManageUsers()
         {
-             return View();
+            var users = await _context.Users
+                .Where(u => u.Role == "Brand")
+                .OrderBy(u => u.FullName)
+                .ToListAsync();
+
+            return View(users);
         }
 
 
