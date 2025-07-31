@@ -57,7 +57,7 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-4 fw-bold">Requested Date:</div>
-                                <div class="col-md-8">@Model.RequestedDateTime.ToString("dddd, MMMM dd, yyyy h:mm tt")</div>
+                                <div class="col-md-8">@Model.RequestedDateTime?.ToString("dddd, MMMM dd, yyyy h:mm tt")</div>
                             </div>
                             @if (Model.Status == "Approved" && Model.ConfirmedDateTime.HasValue)
                             {
@@ -112,7 +112,7 @@
                             {
                                 <div class="row mt-2">
                                     <div class="col-md-4 fw-bold">Last Updated:</div>
-                                    <div class="col-md-8">@Model.UpdatedAt.ToString("MMM dd, yyyy h:mm tt")</div>
+                                    <div class="col-md-8">@Model.UpdatedAt?.ToString("MMM dd, yyyy h:mm tt")</div>
                                 </div>
                             }
                         </div>

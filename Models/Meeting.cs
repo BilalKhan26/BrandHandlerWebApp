@@ -16,7 +16,7 @@ namespace BrandHandlerWebApp.Models
         public string Description { get; set; }
         
         [Required]
-        public DateTime RequestedDateTime { get; set; }
+        public DateTime? RequestedDateTime { get; set; }
         
         public DateTime? ConfirmedDateTime { get; set; }
         

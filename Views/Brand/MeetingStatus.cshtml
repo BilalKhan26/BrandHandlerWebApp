@@ -46,7 +46,7 @@
                             <div class="card bg-light h-100">
                                 <div class="card-body">
                                     <h6 class="card-subtitle mb-2 text-muted">Requested Date & Time</h6>
-                                    <p class="card-text">@Model.RequestedDateTime.ToString("dddd, MMMM dd, yyyy")<br />@Model.RequestedDateTime.ToString("h:mm tt")</p>
+                                    <p class="card-text">@Model.RequestedDateTime?.ToString("dddd, MMMM dd, yyyy")<br />@Model.RequestedDateTime?.ToString("h:mm tt")</p>
                                 </div>
                             </div>
                         </div>

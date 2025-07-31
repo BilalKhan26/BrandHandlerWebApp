@@ -18,6 +18,18 @@ namespace BrandHandlerWebApp.Controllers
         {
             return View();
         }
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult FAQ()
+        {
+            return View();
+        }
 
         [Authorize]
         public IActionResult Privacy()

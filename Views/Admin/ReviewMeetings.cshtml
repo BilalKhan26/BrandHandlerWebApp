@@ -62,7 +62,7 @@
                                                 <tr>
                                                     <td>@meeting.Title</td>
                                                     <td>@meeting.BrandUser?.FullName</td>
-                                                    <td>@meeting.RequestedDateTime.ToString("MMM dd, yyyy h:mm tt")</td>
+                                                    <td>@meeting.RequestedDateTime?.ToString("MMM dd, yyyy h:mm tt")</td>
                                                     <td>@meeting.CreatedAt.ToString("MMM dd, yyyy")</td>
                                                     <td>
                                                         <a asp-action="MeetingDetails" asp-route-id="@meeting.Id" class="btn btn-sm btn-info">
@@ -157,8 +157,8 @@
                                                 <tr>
                                                     <td>@meeting.Title</td>
                                                     <td>@meeting.BrandUser?.FullName</td>
-                                                    <td>@meeting.RequestedDateTime.ToString("MMM dd, yyyy h:mm tt")</td>
-                                                    <td>@meeting.UpdatedAt.ToString("MMM dd, yyyy")</td>
+                                                    <td>@meeting.RequestedDateTime?.ToString("MMM dd, yyyy h:mm tt")</td>
+                                                    <td>@meeting.UpdatedAt?.ToString("MMM dd, yyyy")</td>
                                                     <td>
                                                         <a asp-action="MeetingDetails" asp-route-id="@meeting.Id" class="btn btn-sm btn-info">
                                                             <i class="bi bi-eye"></i> View

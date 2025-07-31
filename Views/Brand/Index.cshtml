@@ -42,7 +42,7 @@
                                     {
                                         <tr>
                                             <td>@meeting.Title</td>
-                                            <td>@meeting.RequestedDateTime.ToString("MMM dd, yyyy h:mm tt")</td>
+                                            <td>@meeting.RequestedDateTime?.ToString("MMM dd, yyyy h:mm tt")</td>
                                             <td>
                                                 @if (meeting.Status == "Pending")
                                                 {

@@ -6,6 +6,6 @@ namespace BrandHandlerWebApp.Models
         public string FullName { get; set; }
         public string Role { get; set; }
         public bool IsEmailConfirmed { get; set; } = false;
-        public string ConfirmationToken { get; set; }
+        public string? ConfirmationToken { get; set; }
     }
 }

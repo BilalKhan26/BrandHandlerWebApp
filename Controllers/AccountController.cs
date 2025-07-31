@@ -101,7 +101,7 @@ namespace BrandHandlerWebApp.Controllers
             if (!model.Email.Contains("@") || model.Email.Split('@')[1].ToLower() == "gmail.com" || 
                 model.Email.Split('@')[1].ToLower() == "yahoo.com" || model.Email.Split('@')[1].ToLower() == "hotmail.com")
             {
-                ModelState.AddModelError("Email", "Please use your organization email address.");
+                ModelState.AddModelError("Email", "Please use your organization email address.Dont use .hotmail,.gmail,.yahoo");
                 return View(model);
             }
             

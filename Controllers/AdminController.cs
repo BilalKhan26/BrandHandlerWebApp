@@ -60,6 +60,14 @@ namespace BrandHandlerWebApp.Controllers
             return View(meeting);
         }
 
+
+        
+        public IActionResult ManageUsers()
+        {
+             return View();
+        }
+
+
         [HttpGet]
         public async Task<IActionResult> ApproveMeeting(int id)
         {
@@ -75,7 +83,7 @@ namespace BrandHandlerWebApp.Controllers
             var viewModel = new MeetingApprovalViewModel
             {
                 MeetingId = meeting.Id,
-                ConfirmedDateTime = meeting.RequestedDateTime
+                ConfirmedDateTime = (DateTime)meeting.RequestedDateTime
             };
 
             return View(viewModel);
