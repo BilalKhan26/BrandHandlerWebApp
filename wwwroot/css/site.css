@@ -74,7 +74,8 @@ body {
 
 /* Footer styling */
 .footer {
-  /* Remove position: absolute and bottom: 0 for flex layouts */
+  position: absolute;
+  bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px;

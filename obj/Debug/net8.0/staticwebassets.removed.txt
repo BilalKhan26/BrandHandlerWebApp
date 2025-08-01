@@ -1,0 +1,2 @@
+C:\Users\mbk\source\repos\BrandHandlerWebApp\wwwroot\css\mythemebootstrap.min.css
+C:\Users\mbk\source\repos\BrandHandlerWebApp\wwwroot\images\brand.png.png

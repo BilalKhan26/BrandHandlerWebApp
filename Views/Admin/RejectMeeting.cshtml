@@ -11,11 +11,9 @@
                 </div>
                 <div class="card-body">
                     <form asp-action="RejectMeeting" asp-route-id="@Model.MeetingId" method="post">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" asp-for="MeetingId" />
                         <div class="mb-3">
-                            <label for="RejectionReason" class="form-label">Reason for Rejection</label>
-                            <textarea class="form-control"  name="RejectionReason" rows="5" required></textarea>
+                            <label for="rejectionReason" class="form-label">Reason for Rejection</label>
+                            <textarea class="form-control" id="rejectionReason" name="RejectionReason" rows="5" required></textarea>
                             <span asp-validation-for="RejectionReason" class="text-danger"></span>
                         </div>
                         <div class="d-flex justify-content-between">

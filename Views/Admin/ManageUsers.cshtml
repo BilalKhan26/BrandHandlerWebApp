@@ -4,11 +4,6 @@
 }
 
 <div class="container-fluid">
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-        <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer">
-            <!-- Toasts will be appended here -->
-        </div>
-    </div>
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 mb-0 text-gray-800">Manage Brand Users</h1>
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addUserModal">
@@ -30,7 +25,8 @@
                             <tr>
                                 <th>Full Name</th>
                                 <th>Email</th>
-                                <th>Registration Email</th>
+                                <th>Registration Date</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -86,7 +82,6 @@
             </div>
             <div class="modal-body">
                 <form id="addUserForm">
-                    @Html.AntiForgeryToken()
                     <div class="mb-3">
                         <label for="fullName" class="form-label">Full Name</label>
                         <input type="text" class="form-control" id="fullName" required>
@@ -119,7 +114,6 @@
             </div>
             <div class="modal-body">
                 <form id="editUserForm">
-                    @Html.AntiForgeryToken()
                     <input type="hidden" id="editUserId">
                     <div class="mb-3">
                         <label for="editFullName" class="form-label">Full Name</label>
@@ -141,151 +135,63 @@
 
 @section Scripts {
     <script>
-        // Function to show toast messages
-        function showToast(message, type = 'success') {
-            const toastContainer = document.getElementById('toastContainer');
-            if (!toastContainer) {
-                console.error('Toast container not found');
-                return;
-            }
-
-            const toast = document.createElement('div');
-            toast.className = `toast align-items-center text-white bg-${type} border-0`
-            toast.setAttribute('role', 'alert');
-            toast.setAttribute('aria-live', 'assertive');
-            toast.setAttribute('aria-atomic', 'true');
-            toast.innerHTML = `
-                <div class="d-flex">
-                    <div class="toast-body">
-                        ${message}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            `;
-
-            toastContainer.appendChild(toast);
-            const bsToast = new bootstrap.Toast(toast);
-            bsToast.show();
-
-            toast.addEventListener('hidden.bs.toast', function () {
-                toast.remove();
-            });
-        }
-
-        // Add User functionality
-        document.getElementById('saveUserBtn').addEventListener('click', async function () {
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            if (!fullName || !email || !password) {
-                showToast('Please fill in all fields.', 'danger');
-                return;
-            }
-
-            try {
-                const response = await fetch('/Admin/AddUser', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-                    },
-                    body: JSON.stringify({ fullName, email, password })
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    showToast(result.message, 'success');
-                    bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
+        // Delete user functionality
+        document.querySelectorAll('.delete-user').forEach(button => {
+            button.addEventListener('click', function () {
+                const userId = this.getAttribute('data-user-id');
+                
+                if (confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+                    // In a real application, you would make an AJAX call to delete the user
+                    // For now, we'll just show an alert
+                    alert(`User with ID ${userId} would be deleted in a real application.`);
+                    
+                    // Reload the page to refresh the user list
                     location.reload();
-                } else {
-                    showToast(result.message || 'Failed to add user.', 'danger');
                 }
-            } catch (error) {
-                console.error('Error adding user:', error);
-                showToast('An error occurred while adding the user.', 'danger');
-            }
+            });
         });
 
-        // Edit User functionality
+        // Edit user functionality
         document.querySelectorAll('.edit-user').forEach(button => {
             button.addEventListener('click', function () {
                 const userId = this.getAttribute('data-user-id');
                 const fullName = this.getAttribute('data-full-name');
                 const email = this.getAttribute('data-email');
-
+                
+                // Populate the edit form
                 document.getElementById('editUserId').value = userId;
                 document.getElementById('editFullName').value = fullName;
                 document.getElementById('editEmail').value = email;
-
+                
+                // Show the edit modal
                 new bootstrap.Modal(document.getElementById('editUserModal')).show();
             });
         });
 
-        document.getElementById('updateUserBtn').addEventListener('click', async function () {
-            const id = document.getElementById('editUserId').value;
-            const fullName = document.getElementById('editFullName').value;
-            const email = document.getElementById('editEmail').value;
-
-            if (!fullName || !email) {
-                showToast('Please fill in all fields.', 'danger');
-                return;
-            }
-
-            try {
-                const response = await fetch('/Admin/EditUser', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-                    },
-                    body: JSON.stringify({ id, fullName, email })
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    showToast(result.message, 'success');
-                    bootstrap.Modal.getInstance(document.getElementById('editUserModal')).hide();
-                    location.reload();
-                } else {
-                    showToast(result.message || 'Failed to update user.', 'danger');
-                }
-            } catch (error) {
-                console.error('Error updating user:', error);
-                showToast('An error occurred while updating the user.', 'danger');
-            }
+        // Save user functionality
+        document.getElementById('saveUserBtn').addEventListener('click', function () {
+            // In a real application, you would make an AJAX call to save the user
+            // For now, we'll just show an alert
+            alert('User would be saved in a real application.');
+            
+            // Hide the modal
+            bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
+            
+            // Reload the page to refresh the user list
+            location.reload();
         });
 
-        // Delete User functionality
-        document.querySelectorAll('.delete-user').forEach(button => {
-            button.addEventListener('click', async function () {
-                const userId = this.getAttribute('data-user-id');
-
-                if (confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
-                    try {
-                        const response = await fetch(`/Admin/DeleteUser?id=${userId}`, {
-                            method: 'DELETE',
-                            headers: {
-                                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-                            }
-                        });
-
-                        const result = await response.json();
-
-                        if (response.ok) {
-                            showToast(result.message, 'success');
-                            location.reload();
-                        } else {
-                            showToast(result.message || 'Failed to delete user.', 'danger');
-                        }
-                    } catch (error) {
-                        console.error('Error deleting user:', error);
-                        showToast('An error occurred while deleting the user.', 'danger');
-                    }
-                }
-            });
+        // Update user functionality
+        document.getElementById('updateUserBtn').addEventListener('click', function () {
+            // In a real application, you would make an AJAX call to update the user
+            // For now, we'll just show an alert
+            alert('User would be updated in a real application.');
+            
+            // Hide the modal
+            bootstrap.Modal.getInstance(document.getElementById('editUserModal')).hide();
+            
+            // Reload the page to refresh the user list
+            location.reload();
         });
     </script>
 }
