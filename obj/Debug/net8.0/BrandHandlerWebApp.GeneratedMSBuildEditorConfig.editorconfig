@@ -9,157 +9,157 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BrandHandlerWebApp
 build_property.RootNamespace = BrandHandlerWebApp
-build_property.ProjectDir = C:\Users\mbk\source\repos\BrandHandlerWebApp\
+build_property.ProjectDir = c:\Users\mbk\source\repos\BrandHandlerWebApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\mbk\source\repos\BrandHandlerWebApp
+build_property.MSBuildProjectDirectory = c:\Users\mbk\source\repos\BrandHandlerWebApp
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/AccessDenied.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/ChangePassword.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/ConfirmEmail.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/ConfirmEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDb25maXJtRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/EmailConfirmationSent.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/EmailConfirmationSent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFbWFpbENvbmZpcm1hdGlvblNlbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/Login.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/Register.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/VerifyEmail.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Account/VerifyEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxWZXJpZnlFbWFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/ApproveMeeting.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/ApproveMeeting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQXBwcm92ZU1lZXRpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/DeleteMeeting.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/DeleteMeeting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGVsZXRlTWVldGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/Index.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/ManageUsers.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/ManageUsers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/MeetingDetails.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/MeetingDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWVldGluZ0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/RejectMeeting.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/RejectMeeting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmVqZWN0TWVldGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/ReviewMeetings.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Admin/ReviewMeetings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUmV2aWV3TWVldGluZ3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Brand/Dashboard.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Brand/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmRcRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Brand/EditMeeting.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Brand/EditMeeting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmRcRWRpdE1lZXRpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Brand/Index.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Brand/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Brand/MeetingStatus.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Brand/MeetingStatus.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmRcTWVldGluZ1N0YXR1cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Brand/ScheduleMeeting.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Brand/ScheduleMeeting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQnJhbmRcU2NoZWR1bGVNZWV0aW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/About.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/Admin.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/Admin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/Contact.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/FAQ.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/FAQ.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGQVEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/Index.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/Privacy.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/Terms.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/Terms.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZXJtcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/User.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Home/User.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Meeting/Details.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Meeting/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVldGluZ1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/Error.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/NotFound.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/NotFound.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXE5vdEZvdW5kLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/_AccountLayout.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/_AccountLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BY2NvdW50TGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/_LoginPartial.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/_ViewImports.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/_ViewStart.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/_Layout.cshtml]
+[c:/Users/mbk/source/repos/BrandHandlerWebApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-bmamqhpyvj

@@ -38,11 +38,10 @@
     </dl>
 
     <form asp-action="DeleteMeetingConfirmed" method="post">
-        @* CSRF Protection *@
         @Html.AntiForgeryToken()
-        
         <input type="hidden" asp-for="Id" />
         <button type="submit" class="btn btn-danger">Delete</button>
         <a asp-action="ReviewMeetings" class="btn btn-secondary ms-2">Back to List</a>
     </form>
+
 </div>

@@ -1,7 +1,9 @@
 wwwroot\css\account.css
+wwwroot\css\mythemebootstrap.min.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\images\account-bg.jpg
+wwwroot\images\brand.png.png
 wwwroot\images\megaphone.png
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css

@@ -6,7 +6,9 @@
     <title>@ViewData["Title"] - Brand Handler</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
+    <link rel="stylesheet" href="~/css/mythemebootstrap.min.css" asp-append-version="true" />
+
     <link rel="stylesheet" href="~/BrandHandlerWebApp.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -68,19 +70,20 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - Brand Handler - 
-            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> - 
-            <a asp-area="" asp-controller="Home" asp-action="Terms">Terms</a> - 
-            <a asp-area="" asp-controller="Home" asp-action="About">About</a> - 
-            <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a> - 
-            <a asp-area="" asp-controller="Home" asp-action="FAQ">FAQ</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <footer class="border-top text-muted text-center py-3 bg-dark text-fg-light">
+        <div class="container text-center text-sm-start text-white">
+            &copy; @DateTime.Now.Year - Brand Handler &nbsp;
+            <a asp-controller="Home" asp-action="Privacy">Privacy</a> &nbsp;
+            <a asp-controller="Home" asp-action="Terms">Terms</a> &nbsp;
+            <a asp-controller="Home" asp-action="About">About</a> &nbsp;
+            <a asp-controller="Home" asp-action="Contact">Contact</a> &nbsp;
+            <a asp-controller="Home" asp-action="FAQ">FAQ</a>
+        </div>
 </body>
 </html>

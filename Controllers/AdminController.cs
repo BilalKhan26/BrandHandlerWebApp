@@ -87,6 +87,91 @@ namespace BrandHandlerWebApp.Controllers
             return View(users);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddUser([FromBody] AddUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userExists = await _userManager.FindByEmailAsync(model.Email);
+            if (userExists != null)
+            {
+                return Conflict(new { message = "User with this email already exists." });
+            }
+
+            var user = new Users
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                FullName = model.FullName,
+                EmailConfirmed = true, // Assuming email is confirmed upon admin creation
+                Role = Constants.BrandRole
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, Constants.BrandRole);
+                // Send confirmation email
+                var emailSubject = "Your BrandHandler account has been created";
+                var emailBody = $"Hello {user.FullName},\n\nYour account has been created successfully.\nEmail: {user.Email}\n\nPlease log in to your account.\n\nBest regards,\nThe Admin Team";
+                await _emailService.SendEmailAsync(user.Email, emailSubject, emailBody);
+                return Ok(new { message = "User added successfully and confirmation email sent." });
+            }
+
+            return BadRequest(new { message = "Failed to add user.", errors = result.Errors.Select(e => e.Description) });
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> EditUser([FromBody] EditUserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = await _userManager.FindByIdAsync(model.Id);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            user.FullName = model.FullName;
+            user.Email = model.Email;
+            user.UserName = model.Email; // Update UserName as well if email is changed
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return Ok(new { message = "User updated successfully." });
+            }
+
+            return BadRequest(new { message = "Failed to update user.", errors = result.Errors.Select(e => e.Description) });
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (result.Succeeded)
+            {
+                return Ok(new { message = "User deleted successfully." });
+            }
+
+            return BadRequest(new { message = "Failed to delete user.", errors = result.Errors.Select(e => e.Description) });
+        }
+
         [HttpGet]
         public async Task<IActionResult> ApproveMeeting(int id)
         {
@@ -169,9 +254,10 @@ namespace BrandHandlerWebApp.Controllers
             return View(meeting);
         }
 
-        [HttpPost, ActionName("DeleteMeeting")]
         [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("DeleteMeetingConfirmed")]
         public async Task<IActionResult> DeleteMeetingConfirmed(int id)
+
         {
             var meeting = await _context.Meetings.FindAsync(id);
             if (meeting == null) return NotFound();
@@ -247,5 +333,7 @@ namespace BrandHandlerWebApp.Controllers
 
             return RedirectToAction(nameof(ReviewMeetings));
         }
+
+
     }
 }

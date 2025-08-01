@@ -11,10 +11,20 @@
     <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BrandHandlerWebApp.styles.css" asp-append-version="true" />
 </head>
-<body>
-    <div>
+<body class="d-flex flex-column min-vh-100">
+    <div class="flex-grow-1">
         @RenderBody()
     </div>
+    <footer class="border-top footer text-muted mt-5">
+        <div class="container">
+            &copy; @DateTime.Now.Year - Brand Handler - 
+            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> - 
+            <a asp-area="" asp-controller="Home" asp-action="Terms">Terms</a> - 
+            <a asp-area="" asp-controller="Home" asp-action="About">About</a> - 
+            <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a> - 
+            <a asp-area="" asp-controller="Home" asp-action="FAQ">FAQ</a>
+        </div>
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
